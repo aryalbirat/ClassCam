@@ -1,9 +1,0 @@
-opencv-python
-numpy
-torch
-torchvision
-matplotlib
-deep_sort_realtime
-ultralytics
-tqdm
-pandas

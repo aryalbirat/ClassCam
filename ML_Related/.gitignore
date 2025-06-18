@@ -1,0 +1,51 @@
+# Python-related ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+*.egg-info/
+*.eggs/
+
+# Logs and temporary files
+logs/
+*.log
+*.csv
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Model and large files
+*.pt
+*.onnx
+*.h5
+
+# Dependency files
+*.lock
+
+# Build and distribution directories
+build/
+dist/
+*.spec
+
+# Images and videos
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+*.mkv
+
+# Miscellaneous
+*.bak
+*.tmp
