@@ -1,9 +1,7 @@
+torch==2.7.1
 opencv-python
+flask
 numpy
-torch
-torchvision
-matplotlib
-deep_sort_realtime
-ultralytics
-tqdm
-pandas
+Pillow
+gitpython==3.1.44
+setuptools<81

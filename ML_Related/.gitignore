@@ -1,51 +1,62 @@
-# Python-related ignores
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.env
-*.venv
+*.py[cod]
+*$py.class
+
+# Environment
+.venv/
 env/
 venv/
 ENV/
-*.egg-info/
-*.eggs/
+*.env
 
-# Logs and temporary files
-logs/
-*.log
-*.csv
-
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-
-# OS-specific files
+# MacOS / Linux system files
 .DS_Store
-Thumbs.db
 
-# Model and large files
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# PyCharm
+.idea/
+
+# Logs and runtime files
+*.log
+*.pid
+
+# Model weights and cache
 *.pt
+*.pth
+runs/
+yolov5/  # if cloned YOLOv5 folder is present
 *.onnx
-*.h5
 
-# Dependency files
-*.lock
-
-# Build and distribution directories
-build/
-dist/
-*.spec
-
-# Images and videos
-*.jpg
-*.jpeg
-*.png
+# Video and image outputs
 *.mp4
+*.mov
 *.avi
-*.mkv
+*.jpg
+*.png
+output/
+results/
 
-# Miscellaneous
-*.bak
-*.tmp
+# Torch cache
+~/.cache/torch/
+.cache/
+
+# Flask-related
+instance/
+*.db
+
+# Ignore annotated video files
+*.mjpeg
+*.h264
+
+# Ignore upload/output folders
+uploads/
+static/outputs/
+
+# Ignore compiled C files
+*.so
