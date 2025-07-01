@@ -1,6 +1,4 @@
-# detector.py
 import torch
-import numpy as np
 
 class YOLOv5ActionDetector:
     def __init__(self, weights_path='best.pt', device='cpu'):
