@@ -1,9 +1,11 @@
 # from flask import Flask, Response, jsonify
+# from flask_cors import CORS
 # import cv2
 # from detector import YOLOv5ActionDetector
 # from annotator import annotate_attentive_actions
 #
 # app = Flask(__name__)
+# CORS(app)
 # action_detector = YOLOv5ActionDetector(weights_path='best.pt')
 #
 # cap = cv2.VideoCapture('http://192.168.101.2:8776/video')
@@ -60,11 +62,13 @@
 
 # Now for the video code
 from flask import Flask, Response, jsonify
+from flask_cors import CORS
 import cv2
 from detector import YOLOv5ActionDetector
 from annotator import annotate_attentive_actions
 
 app = Flask(__name__)
+CORS(app)
 action_detector = YOLOv5ActionDetector(weights_path='best.pt')
 
 # Use video file instead of webcam
