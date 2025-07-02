@@ -5,3 +5,4 @@ numpy
 Pillow
 gitpython==3.1.44
 setuptools<81
+flask_cors
