@@ -65,10 +65,10 @@ from detector import YOLOv5ActionDetector
 from annotator import annotate_attentive_actions
 
 app = Flask(__name__)
-action_detector = YOLOv5ActionDetector(weights_path='best.pt')
+action_detector = YOLOv5ActionDetector(weights_path='./best.pt')
 
 # Use video file instead of webcam
-cap = cv2.VideoCapture('IMG_0674.mov')
+cap = cv2.VideoCapture('./assets/Video.mov')
 
 # Constants
 TOTAL_STUDENTS = 4
@@ -118,8 +118,11 @@ def get_attentiveness():
     attentive_actions = ['handwriting', 'read', 'write', 'focus']
     attentive_count = sum(1 for label in latest_labels if label in attentive_actions)
     attentiveness_score = round(attentive_count / TOTAL_STUDENTS, 2)
-    return jsonify({"attentiveness": attentiveness_score})
-
+    attentive_percentage= round((attentive_count / TOTAL_STUDENTS) * 100, 2)
+    return jsonify({"attentiveness": attentiveness_score,
+                    "attentive_percentage": attentive_percentage,
+                    "total_students": TOTAL_STUDENTS,
+                    "attentive_count": attentive_count})
 
 if __name__ == '__main__':
     app.run(debug=True)
