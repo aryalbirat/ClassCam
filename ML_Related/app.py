@@ -121,10 +121,9 @@ def video_feed():
 def get_attentiveness():
     attentive_actions = ['handwriting', 'read', 'write', 'focus']
     attentive_count = sum(1 for label in latest_labels if label in attentive_actions)
-    attentiveness_score = round(attentive_count / TOTAL_STUDENTS, 2)
+    # attentiveness_score = round(attentive_count / TOTAL_STUDENTS, 2)
     attentive_percentage= round((attentive_count / TOTAL_STUDENTS) * 100, 2)
-    return jsonify({"attentiveness": attentiveness_score,
-                    "attentive_percentage": attentive_percentage,
+    return jsonify({"attentive_percentage": attentive_percentage,
                     "total_students": TOTAL_STUDENTS,
                     "attentive_count": attentive_count})
 
