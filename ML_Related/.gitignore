@@ -1,7 +1,11 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
 
 # Environment
 .venv/
@@ -12,6 +16,7 @@ ENV/
 
 # MacOS / Linux system files
 .DS_Store
+Thumbs.db
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
@@ -57,6 +62,3 @@ instance/
 # Ignore upload/output folders
 uploads/
 static/outputs/
-
-# Ignore compiled C files
-*.so

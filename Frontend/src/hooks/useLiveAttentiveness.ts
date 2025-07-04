@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getMLServerUrl } from '../config/api';
 
 interface AttentionDataPoint {
   time: string;
@@ -15,7 +16,7 @@ export const useLiveAttentiveness = () => {
   useEffect(() => {
     const fetchAttentiveness = async () => {
       try {
-        const res = await fetch('http://localhost:5000/attentiveness');
+        const res = await fetch(getMLServerUrl('/attentiveness'));
         const data = await res.json();
         setAttentivePercentage(data.attentive_percentage || 0);
         setAttentiveCount(data.attentive_count || 0);
