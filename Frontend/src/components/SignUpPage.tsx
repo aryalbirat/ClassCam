@@ -1,27 +1,33 @@
 import React, { useState } from 'react';
 import { Monitor, Mail, Lock, User, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { signup } from '../api/auth';
 
 interface SignUpPageProps {
-  onSignUp: () => void;
+  onAuth: (token: string) => void;
   onNavigateToSignIn: () => void;
 }
 
-export const SignUpPage: React.FC<SignUpPageProps> = ({ onSignUp, onNavigateToSignIn }) => {
+export const SignUpPage: React.FC<SignUpPageProps> = ({ onAuth, onNavigateToSignIn }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate registration delay
-    setTimeout(() => {
+    setError(null);
+    try {
+      const { token } = await signup(name, email, password);
+      localStorage.setItem('jwt', token);
+      onAuth(token);
+    } catch (err: any) {
+      setError(err.message || 'Signup failed');
+    } finally {
       setIsLoading(false);
-      onSignUp();
-    }, 1000);
+    }
   };
 
   return (
@@ -61,6 +67,9 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onSignUp, onNavigateToSi
               <h1 className="text-3xl font-bold text-white mb-2">Join ClassCam</h1>
               <p className="text-blue-200/80">Create your team account</p>
             </div>
+
+            {/* Error Message */}
+            {error && <div className="mb-4 text-red-400 text-center font-semibold">{error}</div>}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">

@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 import { Monitor, Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { login } from '../api/auth';
 
 interface SignInPageProps {
-  onSignIn: () => void;
+  onAuth: (token: string) => void;
   onNavigateToSignUp: () => void;
 }
 
-export const SignInPage: React.FC<SignInPageProps> = ({ onSignIn, onNavigateToSignUp }) => {
+export const SignInPage: React.FC<SignInPageProps> = ({ onAuth, onNavigateToSignUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate authentication delay
-    setTimeout(() => {
+    setError(null);
+    try {
+      const { token } = await login(email, password);
+      localStorage.setItem('jwt', token);
+      onAuth(token);
+    } catch (err: any) {
+      setError(err.message || 'Login failed');
+    } finally {
       setIsLoading(false);
-      onSignIn();
-    }, 1000);
+    }
   };
 
   return (
@@ -60,6 +66,9 @@ export const SignInPage: React.FC<SignInPageProps> = ({ onSignIn, onNavigateToSi
               <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
               <p className="text-blue-200/80">Sign in to access ClassCam</p>
             </div>
+
+            {/* Error Message */}
+            {error && <div className="mb-4 text-red-400 text-center font-semibold">{error}</div>}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
