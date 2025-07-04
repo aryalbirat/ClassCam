@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Monitor, Settings, User, Bell, Video, Eye, LogOut, BarChart3, Menu, X } from 'lucide-react';
+import { Settings, User, Bell, Video, Eye, LogOut, BarChart3, Menu, X } from 'lucide-react';
+import ClasscamLogo from '../assets/Classcam.png';
 
 interface HeaderProps {
   userRole: 'teacher' | 'admin';
@@ -22,10 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ userRole, userName, currentPage,
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="absolute inset-0 bg-blue-500 rounded-xl blur-lg opacity-30"></div>
-                <div className="relative bg-gradient-to-br from-blue-500 to-sky-600 p-2.5 rounded-xl shadow-lg">
-                  <Monitor className="h-6 w-6 text-white" />
-                </div>
+                <img src={ClasscamLogo} alt="ClassCam Logo" className="h-10 w-10 rounded-xl shadow-lg object-cover" />
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">

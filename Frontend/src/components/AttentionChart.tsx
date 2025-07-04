@@ -42,37 +42,17 @@ export const AttentionChart: React.FC<AttentionChartProps> = ({ students }) => {
                   minHeight: '4px'
                 }}
               >
-                {/* Animated shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
-                
                 {/* Attention percentage label */}
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-semibold text-white">
                   {student.attentionLevel}%
                 </div>
               </div>
             </div>
-            
             <div className="text-xs font-medium text-slate-300 text-center max-w-16 truncate">
               {student.name}
             </div>
           </div>
         ))}
-      </div>
-      
-      {/* Legend */}
-      <div className="flex items-center justify-center space-x-6 mt-4 pt-4 border-t border-slate-700/50">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded bg-emerald-400"></div>
-          <span className="text-xs text-slate-300">High (80%+)</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded bg-yellow-400"></div>
-          <span className="text-xs text-slate-300">Medium (60-79%)</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded bg-red-400"></div>
-          <span className="text-xs text-slate-300">Low (0-59%)</span>
-        </div>
       </div>
     </div>
   );

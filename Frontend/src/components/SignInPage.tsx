@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Monitor, Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { login } from '../api/auth';
+import ClasscamLogo from '../assets/Classcam.png';
 
 interface SignInPageProps {
   onAuth: (token: string) => void;
@@ -45,10 +46,12 @@ export const SignInPage: React.FC<SignInPageProps> = ({ onAuth, onNavigateToSign
       <nav className="relative z-10 flex justify-start items-center px-6 lg:px-12 py-6">
         <div className="flex items-center space-x-3 animate-fade-in-left">
           <div className="relative">
-            <div className="absolute inset-0 bg-blue-500 rounded-xl blur-lg opacity-30"></div>
-            <div className="relative bg-gradient-to-br from-blue-500 to-sky-600 p-2.5 rounded-xl shadow-lg">
-              <Monitor className="h-6 w-6 text-white" />
-            </div>
+            <img
+              src={ClasscamLogo}
+              alt="ClassCam Logo"
+              className="h-12 w-12 rounded-xl shadow-lg object-contain bg-white/80"
+              style={{ zIndex: 1 }}
+            />
           </div>
           <span className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
             ClassCam

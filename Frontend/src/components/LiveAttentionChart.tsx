@@ -168,7 +168,6 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
             <span className="leading-none">25%</span>
             <span className="leading-none">0%</span>
           </div>
-          
           {/* Chart area */}
           <div className="flex-1 h-32 min-w-0">
             <svg width="100%" height="100%" viewBox="0 0 100 120" preserveAspectRatio="none" className="overflow-visible">
@@ -177,72 +176,43 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
                 <pattern id="grid" width="10" height="24" patternUnits="userSpaceOnUse">
                   <path d="M 10 0 L 0 0 0 24" fill="none" stroke="rgb(71 85 105)" strokeWidth="0.5" opacity="0.3"/>
                 </pattern>
-                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" className={`${getGradientColor(currentPercentage).split(' ')[0].replace('from-', 'stop-')}`} />
-                  <stop offset="100%" className={`${getGradientColor(currentPercentage).split(' ')[1].replace('to-', 'stop-')}`} />
-                </linearGradient>
               </defs>
-              
               <rect width="100%" height="100%" fill="url(#grid)" />
-              
-              {/* Area fill */}
-              <path
-                d={generateAreaPath()}
-                fill="url(#areaGradient)"
-                className="transition-all duration-500"
-              />
-              
               {/* Line */}
               <path
                 d={generatePath()}
                 fill="none"
-                strokeWidth="2"
-                className={`${getLineColor(currentPercentage)} transition-all duration-500`}
+                strokeWidth="1"
+                className={`stroke-yellow-400 transition-all duration-500`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"
               />
-              
               {/* Data points */}
               {chartData.map((point, index) => {
                 const stepX = chartData.length === 1 ? 50 : (index * 100) / Math.max(chartData.length - 1, 1);
                 const y = maxHeight - (point.percentage / 100) * maxHeight;
-                
                 return (
-                  <g key={index}>
-                    <circle
-                      cx={stepX}
-                      cy={y}
-                      r="3"
-                      className={`${getLineColor(point.percentage).replace('stroke-', 'fill-')} transition-all duration-500`}
-                      vectorEffect="non-scaling-stroke"
-                    />
-                    <circle
-                      cx={stepX}
-                      cy={y}
-                      r="1.5"
-                      fill="white"
-                      className="transition-all duration-500"
-                      vectorEffect="non-scaling-stroke"
-                    />
-                  </g>
+                  <circle
+                    key={index}
+                    cx={stepX}
+                    cy={y}
+                    r="1"
+                    className={`fill-yellow-400 transition-all duration-500`}
+                    vectorEffect="non-scaling-stroke"
+                  />
                 );
               })}
             </svg>
           </div>
         </div>
       </div>
-      
-      {/* Time labels */}
+      {/* Only minimal time labels */}
       <div className="flex justify-between text-xs text-slate-400 mt-3 ml-14">
         {chartData.length >= 1 && (
           <>
             <span>{timeRange.start}</span>
-            {chartData.length > 1 ? (
-              <span className="text-blue-400 font-medium">Now: {timeRange.end}</span>
-            ) : (
-              <span className="text-blue-400 font-medium">Live</span>
-            )}
+            <span className="text-blue-400 font-medium">{chartData.length > 1 ? `Now: ${timeRange.end}` : 'Live'}</span>
           </>
         )}
       </div>

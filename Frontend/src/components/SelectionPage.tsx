@@ -1,5 +1,6 @@
 import React from 'react';
-import { Monitor, Eye, BarChart3, ArrowRight, Activity, Video, Users } from 'lucide-react';
+import { Eye, ArrowRight, Activity, Video, Users } from 'lucide-react';
+import ClasscamLogo from '../assets/Classcam.png';
 
 // type AppPage = 'live-preview' | 'dashboard';
 type AppPage = 'live-preview';
@@ -30,10 +31,12 @@ export const SelectionPage: React.FC<SelectionPageProps> = ({ onPageSelect }) =>
       <div className="relative z-10 flex items-center justify-center pt-12 pb-8 animate-fade-in-down">
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <div className="absolute inset-0 bg-blue-500 rounded-xl blur-lg opacity-30"></div>
-            <div className="relative bg-gradient-to-br from-blue-500 to-sky-600 p-2.5 rounded-xl shadow-2xl shadow-blue-500/20">
-              <Monitor className="h-6 w-6 text-white" />
-            </div>
+            <img
+              src={ClasscamLogo}
+              alt="ClassCam Logo"
+              className="h-12 w-12 rounded-xl shadow-lg object-contain bg-white/80"
+              style={{ zIndex: 1 }}
+            />
           </div>
           <div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-white via-blue-100 to-sky-200 bg-clip-text text-transparent">
