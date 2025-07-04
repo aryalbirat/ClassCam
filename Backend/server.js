@@ -32,13 +32,13 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default-jwt-secret-change-in-produ
 // Set JWT_SECRET for auth routes
 process.env.JWT_SECRET = JWT_SECRET;
 
-// Start server without MongoDB dependency for now
+// Start server and connect to MongoDB if configured
 app.listen(PORT, () => {
   console.log(`Backend server running on port ${PORT}`);
   // console.log(`Health check available at http://localhost:${PORT}/health`);
-  
-  // Try to connect to MongoDB (optional for development)
-  if (MONGO_URI !== 'mongodb://localhost:27017/classcam') {
+
+  // Try to connect to MongoDB if MONGO_URI is set
+  if (MONGO_URI) {
     mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
       .then(() => {
         console.log('MongoDB connected successfully');
