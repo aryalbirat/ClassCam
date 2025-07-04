@@ -21,9 +21,8 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onAuth, onNavigateToSign
     setIsLoading(true);
     setError(null);
     try {
-      const { token } = await signup(name, email, password);
-      localStorage.setItem('jwt', token);
-      onAuth(token);
+      await signup(name, email, password);
+      onNavigateToSignIn();
     } catch (err: any) {
       setError(err.message || 'Signup failed');
     } finally {
