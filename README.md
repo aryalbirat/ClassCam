@@ -1,6 +1,6 @@
-# ClassCam
+# ClassCam - Student Attention Monitoring System
 
-ClassCam is an AI-powered classroom monitoring system that provides real-time attentiveness analytics using computer vision and a modern web dashboard.
+A real-time student attentiveness monitoring system using AI-powered computer vision.
 
 ## Features
 - **Live Video Feed:** View the classroom video stream with real-time AI-based attention annotation.
@@ -11,48 +11,75 @@ ClassCam is an AI-powered classroom monitoring system that provides real-time at
   - **Backend:** Python Flask with YOLOv5-based action detection
 
 ## Project Structure
-```
-ClassCam/
-├── Frontend/           # React frontend (Vite, Tailwind)
-│   ├── src/
-│   │   ├── components/ # React components (LiveAttentionChart, LiveStatisticsCard, etc.)
-│   │   └── ...
-│   ├── public/
-│   └── ...
-├── ML_Related/         # Python backend (Flask, YOLOv5, annotator)
-│   ├── app.py          # Flask server
-│   ├── detector.py     # YOLOv5 action detector
-│   ├── annotator.py    # Frame annotation
-│   ├── requirements.txt
-│   └── ...
-└── ...
+
+- **Backend/** - Express.js server for authentication and user management
+- **Frontend/** - React TypeScript application for the web interface
+- **ML_Related/** - Flask server for video processing and AI detection
+
+## Quick Start
+
+### 1. Start the Backend Server (Express.js)
+
+```bash
+cd Backend
+npm install
+npm run dev
 ```
 
-## Getting Started
+The backend server will start on `http://localhost:3001`
 
-### Backend (Flask)
-1. **Install dependencies:**
-   ```bash
-   cd ML_Related
-   pip install -r requirements.txt
-   ```
-2. **Run the server:**
-   ```bash
-   python app.py
-   ```
-   The backend will start at `http://localhost:5000`.
+### 2. Start the ML Server (Flask)
 
-### Frontend (React)
-1. **Install dependencies:**
-   ```bash
-   cd Frontend
-   npm install
-   ```
-2. **Run the frontend:**
-   ```bash
-   npm run dev
-   ```
-   The frontend will start at `http://localhost:5173` (or as configured).
+```bash
+cd ML_Related
+pip install -r requirements.txt
+python app.py
+```
+
+The ML server will start on `http://localhost:5000`
+
+### 3. Start the Frontend
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+The frontend will start on `http://localhost:5173`
+
+## API Endpoints
+
+### Backend Server (Port 3001)
+- `POST /signup` - User registration
+- `POST /login` - User authentication
+- `GET /me` - Get current user info
+- `GET /health` - Health check
+
+### ML Server (Port 5000)
+- `GET /video_feed` - Live video stream
+- `GET /attentiveness` - Real-time attentiveness data
+
+## Troubleshooting
+
+### CORS Errors
+If you encounter CORS errors, make sure both servers are running:
+1. Backend server on port 3001
+2. ML server on port 5000
+
+### 404 Errors
+- Ensure both servers are running simultaneously
+- Check that the ports are not being used by other applications
+- Verify the video file exists in `ML_Related/assets/Video.mov`
+
+### Database Issues
+The backend server can run without MongoDB for development. User data will be stored in memory and reset when the server restarts.
+
+## Development Notes
+
+- The backend uses in-memory storage for development (no MongoDB required)
+- The ML server processes video files for demonstration
+- Both servers must be running for the full application to work
 
 ## Usage
 - Open the frontend in your browser.
