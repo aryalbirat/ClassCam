@@ -138,7 +138,7 @@ def video_feed():
 
 @app.route('/attentiveness')
 def get_attentiveness():
-    attentive_actions = ['handwriting', 'read', 'write', 'focus']
+    attentive_actions = ['handraising', 'reading', 'writing', 'focus']
     attentive_count = sum(1 for label in latest_labels if label in attentive_actions)
     # attentiveness_score = round(attentive_count / TOTAL_STUDENTS, 2)
     attentive_percentage= round((attentive_count / TOTAL_STUDENTS) * 100, 2)
