@@ -3,13 +3,14 @@ import { Monitor, Settings, User, Bell, Video, Eye, LogOut, BarChart3, Menu, X }
 
 interface HeaderProps {
   userRole: 'teacher' | 'admin';
+  userName?: string;
   currentPage: 'live-preview';
   onPageChange: (page: 'live-preview') => void;
   onLogout?: () => void;
   className?: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ userRole, currentPage, onPageChange, onLogout, className }) => {
+export const Header: React.FC<HeaderProps> = ({ userRole, userName, currentPage, onPageChange, onLogout, className }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -62,13 +63,13 @@ export const Header: React.FC<HeaderProps> = ({ userRole, currentPage, onPageCha
 
           {/* Desktop User Info and Actions */}
           <div className="hidden md:flex items-center space-x-6">
-            {/* Notifications */}
-            <div className="relative group">
+            {/* Notifications
+           <div className="relative group">
               <div className="relative p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-300 cursor-pointer backdrop-blur-sm border border-white/20">
                 <Bell className="h-5 w-5 text-white group-hover:text-blue-200 transition-colors" />
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-red-500 to-pink-500 rounded-full border-2 border-slate-900 animate-pulse"></div>
               </div>
-            </div>
+            </div>  */}
             
             {/* User Profile */}
             <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer">
@@ -80,18 +81,18 @@ export const Header: React.FC<HeaderProps> = ({ userRole, currentPage, onPageCha
               </div>
               <div className="text-sm">
                 <div className="font-semibold text-white">
-                  {userRole === 'teacher' ? 'Ms. Johnson' : 'Admin User'}
+                  {userName || (userRole === 'teacher' ? 'Ms. Johnson' : 'Admin User')}
                 </div>
                 <div className="text-xs text-blue-200/80 capitalize font-medium">{userRole}</div>
               </div>
             </div>
             
-            {/* Settings */}
+            {/* Settings
             <div className="relative group">
               <div className="p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-300 cursor-pointer backdrop-blur-sm border border-white/20 group-hover:rotate-90 transform">
                 <Settings className="h-5 w-5 text-white group-hover:text-blue-200 transition-all duration-300" />
               </div>
-            </div>
+            </div> */}
 
             {/* Logout Button */}
             {onLogout && (
@@ -162,7 +163,7 @@ export const Header: React.FC<HeaderProps> = ({ userRole, currentPage, onPageCha
                     </div>
                     <div>
                       <div className="font-semibold text-white">
-                        {userRole === 'teacher' ? 'Ms. Johnson' : 'Admin User'}
+                        {userName || (userRole === 'teacher' ? 'Ms. Johnson' : 'Admin User')}
                       </div>
                       <div className="text-sm text-blue-200/80 capitalize font-medium">{userRole}</div>
                     </div>

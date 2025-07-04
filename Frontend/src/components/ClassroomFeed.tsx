@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users } from 'lucide-react';
+import { getMLServerUrl } from '../config/api';
 
 export const ClassroomFeed: React.FC = () => {
   return (
@@ -17,7 +18,7 @@ export const ClassroomFeed: React.FC = () => {
       <div className="relative aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700/50 mb-8">
         {/* Live video stream from backend */}
         <img
-          src="http://localhost:5000/video_feed"
+          src={getMLServerUrl('/video_feed')}
           alt="Live Classroom Feed"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ zIndex: 1 }}
@@ -44,3 +45,4 @@ export const ClassroomFeed: React.FC = () => {
     </div>
   );
 };
+export default ClassroomFeed;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { ClassroomFeed } from './components/ClassroomFeed';
 import { LandingPage } from './components/LandingPage';
@@ -8,13 +8,28 @@ import { SignUpPage } from './components/SignUpPage';
 import { LiveStatisticsCard } from './components/LiveStatisticsCard';
 import { LiveAttentionChart } from './components/LiveAttentionChart';
 import { useLiveAttentiveness } from './hooks/useLiveAttentiveness';
+import { getMe } from './api/auth';
 
 type AppPage = 'landing' | 'signin' | 'signup' | 'selection' | 'live-preview';
 
 function App() {
-  const [userRole] = useState<'teacher' | 'admin'>('admin');
+  const [userRole, setUserRole] = useState<'teacher' | 'admin'>('admin');
+  const [userName, setUserName] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<AppPage>('landing');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [jwt, setJwt] = useState<string | null>(null);
+
+  // On mount, check for JWT in localStorage
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      setJwt(token);
+      setCurrentPage('selection');
+      getMe().then(user => {
+        setUserName(user.name);
+        setUserRole(user.role || 'admin');
+      }).catch(() => {});
+    }
+  }, []);
 
   // Use live attentiveness for live-preview
   const {
@@ -28,14 +43,14 @@ function App() {
     setCurrentPage('signin');
   };
 
-  const handleSignIn = () => {
-    setIsAuthenticated(true);
+  const handleAuth = (token: string) => {
+    setJwt(token);
+    localStorage.setItem('jwt', token);
     setCurrentPage('selection');
-  };
-
-  const handleSignUp = () => {
-    setIsAuthenticated(true);
-    setCurrentPage('selection');
+    getMe().then(user => {
+      setUserName(user.name);
+      setUserRole(user.role || 'admin');
+    }).catch(() => {});
   };
 
   const handleNavigateToSignUp = () => {
@@ -51,35 +66,38 @@ function App() {
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
+    setJwt(null);
+    localStorage.removeItem('jwt');
     setCurrentPage('landing');
   };
 
   // Landing page - not authenticated
-  if (!isAuthenticated && currentPage === 'landing') {
+  if (!jwt && currentPage === 'landing') {
     return <LandingPage onLogin={handleLogin} />;
   }
 
   // Sign In page
-  if (!isAuthenticated && currentPage === 'signin') {
-    return <SignInPage onSignIn={handleSignIn} onNavigateToSignUp={handleNavigateToSignUp} />;
+  if (!jwt && currentPage === 'signin') {
+    return <SignInPage onAuth={handleAuth} onNavigateToSignUp={handleNavigateToSignUp} />;
   }
 
   // Sign Up page
-  if (!isAuthenticated && currentPage === 'signup') {
-    return <SignUpPage onSignUp={handleSignUp} onNavigateToSignIn={handleNavigateToSignIn} />;
+  if (!jwt && currentPage === 'signup') {
+    return <SignUpPage onAuth={handleAuth} onNavigateToSignIn={handleNavigateToSignIn} />;
   }
 
   // Selection page - authenticated but choosing between live preview
-  if (isAuthenticated && currentPage === 'selection') {
+  if (jwt && currentPage === 'selection') {
     return <SelectionPage onPageSelect={handlePageChange} />;
   }
 
   // Main application pages - authenticated and page selected
+  if (!jwt) return null;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
       <Header 
         userRole={userRole} 
+        userName={userName}
         currentPage={currentPage as 'live-preview'} 
         onPageChange={(page) => handlePageChange(page as AppPage)}
         onLogout={handleLogout}
