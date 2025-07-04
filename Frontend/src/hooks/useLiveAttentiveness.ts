@@ -37,7 +37,7 @@ export const useLiveAttentiveness = () => {
       }
     };
     fetchAttentiveness();
-    const interval = setInterval(fetchAttentiveness, 5000);
+   const interval = setInterval(fetchAttentiveness, 2000);
     return () => clearInterval(interval);
   }, []);
 
