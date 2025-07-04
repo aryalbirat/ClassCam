@@ -147,6 +147,6 @@ def get_attentiveness():
                     "attentive_count": attentive_count})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
 
