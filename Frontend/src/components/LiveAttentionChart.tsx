@@ -189,7 +189,7 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
                 vectorEffect="non-scaling-stroke"
               />
               {/* Data points */}
-              {chartData.map((point, index) => {
+              {/* {chartData.map((point, index) => {
                 const stepX = chartData.length === 1 ? 50 : (index * 100) / Math.max(chartData.length - 1, 1);
                 const y = maxHeight - (point.percentage / 100) * maxHeight;
                 return (
@@ -202,7 +202,7 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
                     vectorEffect="non-scaling-stroke"
                   />
                 );
-              })}
+              })} */}
             </svg>
           </div>
         </div>
