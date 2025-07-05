@@ -22,7 +22,6 @@ export const LiveStatisticsCard: React.FC<LiveStatisticsCardProps> = ({ attentio
 
   return (
     <div className="space-y-6">
-      {/* Main Attention Percentage Card */}
       <div className="bg-blue-900/30 backdrop-blur-xl rounded-2xl p-6 border-2 border-blue-400/30 transition-all duration-500">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">

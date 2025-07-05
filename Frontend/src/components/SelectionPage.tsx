@@ -47,7 +47,6 @@ export const SelectionPage: React.FC<SelectionPageProps> = ({ onPageSelect }) =>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-6">
         <div className="grid grid-cols-1 gap-8 max-w-6xl w-full animate-fade-in-up">
           {/* Live Preview Card */}

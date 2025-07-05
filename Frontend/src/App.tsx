@@ -91,8 +91,7 @@ function App() {
     return <SelectionPage onPageSelect={handlePageChange} />;
   }
 
-  // Main application pages - authenticated and page selected
-  if (!jwt) return null;
+      if (!jwt) return null;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
       <Header 
@@ -106,7 +105,6 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {currentPage === 'live-preview' ? (
           <div className="space-y-8">
-            {/* Main Content Grid */}
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
               {/* Left Column - Camera Feed and Chart */}
               <div className="xl:col-span-3 space-y-8">

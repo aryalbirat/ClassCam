@@ -38,7 +38,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
 
       {/* Hero Section */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-6 text-center">
-        {/* Main Title with enhanced animation */}
         <div className="mb-8 animate-fade-in-up">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-blue-400 via-white to-sky-200 bg-clip-text text-transparent mb-6 leading-tight">
             ClassCam

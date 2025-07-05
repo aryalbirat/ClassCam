@@ -14,7 +14,6 @@ export const ClassroomFeed: React.FC = () => {
         </div>
       </div>
       
-      {/* Main classroom video feed */}
       <div className="relative aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700/50 mb-8">
         {/* Live video stream from backend */}
         <img
@@ -24,7 +23,6 @@ export const ClassroomFeed: React.FC = () => {
           style={{ zIndex: 1 }}
         />
 
-        {/* AI Analysis Overlay */}
         <div className="absolute top-4 left-4 bg-black/70 rounded-xl p-3 backdrop-blur-sm border border-slate-600/50 z-10">
           <div className="flex items-center space-x-2 text-white">
             <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
