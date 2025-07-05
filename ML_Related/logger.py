@@ -13,10 +13,10 @@ def get_gpu_usage():
             ['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv,noheader,nounits'],
             encoding='utf-8'
         )
-        gpu_usage = float(result.strip().split('\n')[0])  # percent
+        gpu_usage = float(result.strip().split('\n')[0])
         return gpu_usage
     except Exception:
-        return None  # GPU unavailable or nvidia-smi not found
+        return None
 
 def log_performance_metrics(fps, inference_time, latency):
     ram_usage = psutil.virtual_memory().percent

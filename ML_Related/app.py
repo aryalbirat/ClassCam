@@ -49,10 +49,12 @@
 #
 # @app.route('/attentiveness')
 # def get_attentiveness():
-#     attentive_actions = ['hand_raising', 'reading', 'writing']
+#     attentive_actions = ['handraising', 'reading', 'writing', 'focus']
 #     attentive_count = sum(1 for label in latest_labels if label in attentive_actions)
-#     attentiveness_score = round(attentive_count / TOTAL_STUDENTS, 2)
-#     return jsonify({"attentiveness": attentiveness_score})
+#     attentive_percentage= round((attentive_count / TOTAL_STUDENTS) * 100, 2)
+#     return jsonify({"attentive_percentage": attentive_percentage,
+#                     "total_students": TOTAL_STUDENTS,
+#                     "attentive_count": attentive_count})
 #
 #
 # if __name__ == '__main__':
@@ -94,30 +96,24 @@ def generate_frames():
             print("End of video or failed to read frame.")
             break
 
-        # Detect actions and time inference
         infer_start = time.time()
         action_boxes, action_labels = action_detector.detect(frame)
         infer_end = time.time()
         inference_time = infer_end - infer_start
 
-        latest_labels = action_labels  # Store for API use
+        latest_labels = action_labels
 
-        # Annotate the frame
         annotated_frame = annotate_attentive_actions(frame, action_boxes, action_labels)
 
-        # Latency
         render_time = time.time()
         latency = render_time - capture_time
 
-        # FPS
         frame_count += 1
         elapsed_time = time.time() - start_time
         fps = frame_count / elapsed_time if elapsed_time > 0 else 0.0
 
-        # Log performance
         log_performance_metrics(fps, inference_time, latency)
 
-        # Encode and yield the frame
         _, buffer = cv2.imencode('.jpg', annotated_frame)
         frame_bytes = buffer.tobytes()
 
