@@ -22,7 +22,6 @@ export const useLiveAttentiveness = () => {
         setAttentiveCount(data.attentive_count || 0);
         setTotalStudents(data.total_students || 0);
 
-        // Add new data point to history (keep last 60 points ~5min)
         const now = new Date();
         setAttentionHistory(prev => [
           ...prev.slice(-59),
@@ -33,7 +32,7 @@ export const useLiveAttentiveness = () => {
           }
         ]);
       } catch (e) {
-        // Optionally keep previous values or set to 0
+        
       }
     };
     fetchAttentiveness();

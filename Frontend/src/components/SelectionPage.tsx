@@ -2,7 +2,7 @@ import React from 'react';
 import { Eye, ArrowRight, Activity, Video, Users } from 'lucide-react';
 import ClasscamLogo from '../assets/Classcam.png';
 
-// type AppPage = 'live-preview' | 'dashboard';
+// type AppPage = 'live-preview';
 type AppPage = 'live-preview';
 
 interface SelectionPageProps {
@@ -18,16 +18,16 @@ export const SelectionPage: React.FC<SelectionPageProps> = ({ onPageSelect }) =>
         <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-sky-500/6 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-500/4 rounded-full blur-2xl animate-pulse delay-500"></div>
         
-        {/* Subtle diagonal glow */}
+    
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/3 via-transparent to-sky-600/3"></div>
         
-        {/* Minimal floating elements */}
+
         <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-blue-400/20 rounded-full animate-pulse delay-300"></div>
         <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-sky-400/20 rounded-full animate-pulse delay-700"></div>
         <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-indigo-400/20 rounded-full animate-pulse delay-1000"></div>
       </div>
 
-      {/* Header - Smaller ClassCam Logo */}
+
       <div className="relative z-10 flex items-center justify-center pt-12 pb-8 animate-fade-in-down">
         <div className="flex items-center space-x-4">
           <div className="relative">
@@ -54,7 +54,7 @@ export const SelectionPage: React.FC<SelectionPageProps> = ({ onPageSelect }) =>
             onClick={() => onPageSelect('live-preview')}
             className="group relative bg-blue-900/15 backdrop-blur-xl rounded-3xl p-8 border border-blue-700/20 hover:border-blue-500/40 transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10"
           >
-            {/* Subtle glow effect */}
+
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/8 via-sky-500/5 to-indigo-500/8 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             
             <div className="relative z-10">
@@ -116,10 +116,10 @@ export const SelectionPage: React.FC<SelectionPageProps> = ({ onPageSelect }) =>
         </div>
       </div>
 
-      {/* Subtle grid pattern overlay */}
+
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
       
-      {/* Radial gradient overlay for depth */}
+
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-blue-950/20 to-slate-950/40"></div>
     </div>
   );
