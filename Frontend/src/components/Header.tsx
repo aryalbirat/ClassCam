@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ userRole, userName, currentPage,
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          {/* Logo and Title - Smaller Size */}
+          
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-3">
               <div className="relative">
@@ -46,7 +46,6 @@ export const Header: React.FC<HeaderProps> = ({ userRole, userName, currentPage,
               </button>
             </div>
             
-            {/* Status Indicators - Only show on Live Preview and Desktop */}
             <div className="hidden lg:flex items-center space-x-4 ml-8">
               <div className="flex items-center space-x-2 bg-emerald-500/20 px-3 py-1.5 rounded-full border border-emerald-400/30">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
@@ -137,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({ userRole, userName, currentPage,
                 </button>
               </div>
 
-              {/* Mobile Status Indicators - Only show on Live Preview */}
+      
               <div className="flex flex-wrap gap-3 px-4">
                 <div className="flex items-center space-x-2 bg-emerald-500/20 px-3 py-2 rounded-full border border-emerald-400/30">
                   <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>

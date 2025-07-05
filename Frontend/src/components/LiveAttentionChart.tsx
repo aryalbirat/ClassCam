@@ -21,12 +21,6 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
     return 'stroke-red-400';
   };
 
-  const getGradientColor = (percentage: number) => {
-    if (percentage >= 80) return 'from-emerald-400/20 to-emerald-400/5';
-    if (percentage >= 60) return 'from-yellow-400/20 to-yellow-400/5';
-    return 'from-red-400/20 to-red-400/5';
-  };
-
   // Generate sample data if no data exists to ensure chart always shows
   const chartData = data.length >= 1 ? data : [
     { time: new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }), percentage: currentPercentage, timestamp: Date.now() }
@@ -65,45 +59,6 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
       }
     });
     
-    return path;
-  };
-
-  // Generate area path for gradient fill
-  const generateAreaPath = () => {
-    if (chartData.length < 1) return '';
-    
-    if (chartData.length === 1) {
-      // Single point - create a small area
-      const y = maxHeight - (chartData[0].percentage / 100) * maxHeight;
-      return `M 0 ${maxHeight} L 0 ${y} L 100 ${y} L 100 ${maxHeight} Z`;
-    }
-    
-    const stepX = 100 / Math.max(chartData.length - 1, 1);
-    
-    let path = `M 0 ${maxHeight}`;
-    
-    chartData.forEach((point, index) => {
-      const x = index * stepX;
-      const y = maxHeight - (point.percentage / 100) * maxHeight;
-      
-      if (index === 0) {
-        path += ` L ${x} ${y}`;
-      } else {
-        // Use smooth curves for area fill too
-        const prevPoint = chartData[index - 1];
-        const prevX = (index - 1) * stepX;
-        const prevY = maxHeight - (prevPoint.percentage / 100) * maxHeight;
-        
-        const cpX1 = prevX + stepX * 0.5;
-        const cpY1 = prevY;
-        const cpX2 = x - stepX * 0.5;
-        const cpY2 = y;
-        
-        path += ` C ${cpX1} ${cpY1}, ${cpX2} ${cpY2}, ${x} ${y}`;
-      }
-    });
-    
-    path += ` L ${(chartData.length - 1) * stepX} ${maxHeight} Z`;
     return path;
   };
 
@@ -183,7 +138,8 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
                 d={generatePath()}
                 fill="none"
                 strokeWidth="1"
-                className={`stroke-yellow-400 transition-all duration-500`}
+                // className={`stroke-yellow-400 transition-all duration-500`}
+                className={`${getLineColor(currentPercentage)} transition-all duration-500`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"
