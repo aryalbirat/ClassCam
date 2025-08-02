@@ -12,9 +12,11 @@ export const ClassroomFeed: React.FC = () => {
           <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
           <span className="text-sm font-medium text-red-300">LIVE</span>
         </div>
-      </div>
+      </div> 
+
       
       <div className="relative aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700/50 mb-8">
+       
         {/* Live video stream from backend */}
         <img
           src={getMLServerUrl('/video_feed')}

@@ -26,10 +26,11 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
     { time: new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }), percentage: currentPercentage, timestamp: Date.now() }
   ];
 
-  // Generate SVG path for the line chart
+
+
+  // Generate path here 
   const generatePath = () => {
     if (chartData.length < 1) return '';
-    
     if (chartData.length === 1) {
       // Single point - draw a horizontal line
       return `M 0 ${maxHeight - (chartData[0].percentage / 100) * maxHeight} L 100 ${maxHeight - (chartData[0].percentage / 100) * maxHeight}`;
@@ -62,6 +63,10 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
     return path;
   };
 
+
+
+
+
   // Format time for display
   const formatTimeRange = () => {
     if (chartData.length < 1) return { start: '', end: '' };
@@ -76,6 +81,7 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
   };
 
   const timeRange = formatTimeRange();
+
 
   // Calculate trend
   const getTrend = () => {
@@ -123,9 +129,11 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
             <span className="leading-none">25%</span>
             <span className="leading-none">0%</span>
           </div>
+
           {/* Chart area */}
           <div className="flex-1 h-32 min-w-0">
             <svg width="100%" height="100%" viewBox="0 0 100 120" preserveAspectRatio="none" className="overflow-visible">
+            
               {/* Grid lines */}
               <defs>
                 <pattern id="grid" width="10" height="24" patternUnits="userSpaceOnUse">
@@ -133,6 +141,7 @@ export const LiveAttentionChart: React.FC<LiveAttentionChartProps> = ({ data, cu
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
+              
               {/* Line */}
               <path
                 d={generatePath()}

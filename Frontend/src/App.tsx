@@ -13,7 +13,7 @@ import { getMe } from './api/auth';
 type AppPage = 'landing' | 'signin' | 'signup' | 'selection' | 'live-preview';
 
 function App() {
-  const [userRole, setUserRole] = useState<'teacher' | 'admin'>('admin');
+  const [userRole, setUserRole] = useState< 'admin'>('admin');
   const [userName, setUserName] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<AppPage>('landing');
   const [jwt, setJwt] = useState<string | null>(null);
