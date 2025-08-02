@@ -32,7 +32,7 @@ export const useLiveAttentiveness = () => {
           }
         ]);
       } catch (e) {
-        
+        console.error('Failed to fetch attentiveness data:', e);
       }
     };
     fetchAttentiveness();

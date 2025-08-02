@@ -14,11 +14,11 @@ export const LiveStatisticsCard: React.FC<LiveStatisticsCardProps> = ({ attentio
     return 'text-red-400';
   };
 
-  const getProgressColor = (percentage: number) => {
-    if (percentage >= 80) return 'bg-emerald-400';
-    if (percentage >= 60) return 'bg-yellow-400';
-    return 'bg-red-400';
-  };
+  // const getProgressColor = (percentage: number) => {
+  //   if (percentage >= 80) return 'bg-emerald-400';
+  //   if (percentage >= 60) return 'bg-yellow-400';
+  //   return 'bg-red-400';
+  // };
 
   return (
     <div className="space-y-6">
