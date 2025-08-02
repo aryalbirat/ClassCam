@@ -1,4 +1,4 @@
-# ClassCam - Student Attention Monitoring System
+# ClassCam - Student Attentivness Monitoring System
 
 A real-time student attentiveness monitoring system using AI-powered computer vision.
 
