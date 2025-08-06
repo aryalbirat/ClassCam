@@ -1,24 +1,26 @@
-# ClassCam - Student Attentivness Monitoring System
+# ClassCam - Student Attentiveness Monitoring System
 
 A real-time student attentiveness monitoring system using AI-powered computer vision.
 
 ## Features
 - **Live Video Feed:** View the classroom video stream with real-time AI-based attention annotation.
 - **Attentiveness Analytics:** See live statistics and historical trends of student attentiveness.
+- **JWT Authentication:** Secure user authentication and session management using JSON Web Tokens.
 
 - **Modular Frontend & Backend:**
   - **Frontend:** React + Vite + Tailwind CSS
-  - **Backend:** Python Flask with YOLOv5-based action detection
+  - **Backend:** Node.js (Express) for authentication (with JWT) and user management
+  - **ML Backend:** Python Flask with YOLOv5-based action detection
 
 ## Project Structure
 
-- **Backend/** - Express.js server for authentication and user management
-- **Frontend/** - React TypeScript application for the web interface
-- **ML_Related/** - Flask server for video processing and AI detection
+- **Backend/** - Node.js (Express) server for authentication (JWT) and user management
+- **Frontend/** - React Vite + Tailwind CSS application for the web interface
+- **ML_Related/** - Flask server for video processing and AI detection (YOLOv5 model)
 
 ## Quick Start
 
-### 1. Start the Backend Server (Express.js)
+### 1. Start the Backend Server (Node.js/Express)
 
 ```bash
 cd Backend
@@ -28,7 +30,7 @@ npm run dev
 
 The backend server will start on `http://localhost:3001`
 
-### 2. Start the ML Server (Flask)
+### 2. Start the ML Backend (Flask + YOLOv5)
 
 ```bash
 cd ML_Related
@@ -38,7 +40,7 @@ python app.py
 
 The ML server will start on `http://localhost:5000`
 
-### 3. Start the Frontend
+### 3. Start the Frontend (React + Vite + Tailwind CSS)
 
 ```bash
 cd Frontend
@@ -52,11 +54,11 @@ The frontend will start on `http://localhost:5173`
 
 ### Backend Server (Port 3001)
 - `POST /signup` - User registration
-- `POST /login` - User authentication
-- `GET /me` - Get current user info
+- `POST /login` - User authentication (returns JWT)
+- `GET /me` - Get current user info (requires JWT)
 - `GET /health` - Health check
 
-### ML Server (Port 5000)
+### ML Backend (Port 5000)
 - `GET /video_feed` - Live video stream
 - `GET /attentiveness` - Real-time attentiveness data
 
@@ -78,7 +80,8 @@ The backend server can run without MongoDB for development. User data will be st
 ## Development Notes
 
 - The backend uses in-memory storage for development (no MongoDB required)
-- The ML server processes video files for demonstration
+- The backend uses JWT for secure authentication and session management
+- The ML backend uses a YOLOv5 model for action detection and processes video files for demonstration
 - Both servers must be running for the full application to work
 
 ## Usage
@@ -97,9 +100,6 @@ The backend server can run without MongoDB for development. User data will be st
   - Do not commit large video/model files or sensitive data.
   - Keep `.env` and credentials out of version control.
 
-## License
-MIT License
-
 ---
 
-**ClassCam** — Real-time classroom attentiveness analytics with AI and modern web technologies.
+**ClassCam** — Real-time classroom attentiveness analytics with AI and mordern web technologies
